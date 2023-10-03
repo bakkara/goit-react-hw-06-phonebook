@@ -4,6 +4,7 @@ import { Button, ErrorMsg, Label, StyledField, StyledForm } from "./ContactForm.
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
+import { toast } from "react-hot-toast";
 
 
  const ContactSchema = Yup.object().shape({
@@ -38,8 +39,7 @@ export const ContactForm = () => {
         );
     
         if (isExist) {
-            alert(`${name} or ${number} is already in contacts.`);
-            //Вставити тостер
+           toast.error(`${name} or ${number} is already in contacts.`);
             actions.resetForm();
             return;
         }
